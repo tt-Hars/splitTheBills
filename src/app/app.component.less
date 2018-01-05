@@ -1,0 +1,27 @@
+header{
+    h1{
+        font-size: 50px;
+    }
+}
+
+.homeMenu{
+    display: flex;
+    justify-content: space-around;
+    .menuItem{
+        border: 1px solid violet;
+        border-radius: 50%;
+        height: 400px;
+        width: 415px;
+        display: inline-block;
+        position: relative;
+        background-color: darkslategray; 
+        .menuItemText{
+            position: absolute;
+            font-size: 40px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+        }
+    }
+
+}
