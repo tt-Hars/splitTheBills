@@ -1,27 +1,43 @@
 header{
-    h1{
-        font-size: 50px;
+    display: flex;
+    //justify-content: space-between;
+    span.icon{
+        color: azure;
+        font-size: 30px;
+        align-self: center;
+        width: 15%;
+        padding-left: 1%;
+    }
+    .headHeading{
+        width: 70%;
+        text-align: center;
+        h1{
+            font-size: 50px;
+        }
+    }
+    .userDetails{
+        align-self: center;
+        display: inline-flex;
+        justify-content: space-around;
+        width: 15%;
+        span{
+            font-size: 20px;
+            align-self: center;
+        }
+        .userImg{
+            height: 50px;
+            width:50px;
+            border: 1px solid whitesmoke;
+            border-radius: 50%;
+            display: inline-block;
+        }
     }
 }
 
-.homeMenu{
-    display: flex;
-    justify-content: space-around;
-    .menuItem{
-        border: 1px solid violet;
-        border-radius: 50%;
-        height: 400px;
-        width: 415px;
-        display: inline-block;
-        position: relative;
-        background-color: darkslategray; 
-        .menuItemText{
-            position: absolute;
-            font-size: 40px;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%,-50%);
-        }
-    }
+main{
+    margin: 3% 0;
+}
 
+footer{
+    text-align: center;
 }

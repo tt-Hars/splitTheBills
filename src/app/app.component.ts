@@ -7,4 +7,6 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Split your bills';
+  currentuser = 'There';
+  imgPath= './app/images/dummy-ser.png';
 }

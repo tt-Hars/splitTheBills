@@ -1,16 +1,18 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<header style="text-align:center">
-  <h1>
-    {{title}}
-  </h1>
+<header>
+  <span class="icon"><a routerLink="../menuView" routerLinkActive="active"><span>STB</span></a></span>
+  <div class="headHeading">
+    <h1>
+      {{title}}
+    </h1>
+  </div>
+  <div class="userDetails"><span>Hey {{currentuser}}!</span><div class="userImg"><img src= "../app/images/dummy-ser.png" alt=""></div></div>
   
 </header>
   <main>
-  <div class="homeMenu">
-    <div class="menuItem"><span class="menuItemText">Split it now!</span></div>
-    <div class="menuItem"><span class="menuItemText">Login</span></div>
-  </div>  
-
-
-  <router-outlet></router-outlet>
+    <router-outlet></router-outlet>
 </main>
+
+<footer>
+  <p>STB copyright :p 2018</p>
+</footer>
