@@ -1,3 +1,24 @@
-<p>
-  add-user-events works!
-</p>
+
+<div class="userNameDiv">
+<input #userNameInput id="userNameInput" type="text" placeholder="{{nameTextPlaceholder}}"
+(keyup) = 'keyPressEnter(userNameInput.value)' (blur) = 'keyPressEnter(userNameInput.value)'> <!--(ngModel)] = 'userName'-->
+</div>
+<div class="formHeading">
+    <h2>Start with adding your mates</h2>
+    <button id="addUsers">Click here<span class="glyphicon glyphicon-user"></span></button>
+  </div>
+<div class="addUsersForm">
+  <div class="usersList">
+    <div class="enteredUser" ngFor=()>
+      <label>{{addedUser}}</label><button><span class="glyphicon glyphicon-trash"></span></button>
+    </div>
+  </div>
+  <div class="usersEnter">
+    <input type="text" class="userInfo" placeholder="User's Name">
+    <button id="addUser"><span class="glyphicon glyphicon-plus"></span></button>
+  </div>
+  <div class="allDoneButton">
+    <span>All done? Proceed to add events</span>
+    <button id="usersAdded">Click here <span class="glyphicon glyphicon-ok"></span></button>
+  </div>
+</div>

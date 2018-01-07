@@ -6,7 +6,7 @@
       {{title}}
     </h1>
   </div>
-  <div class="userDetails"><span>Hey {{currentuser}}!</span><div class="userImg"><img src= "../app/images/dummy-ser.png" alt=""></div></div>
+  <div class="userDetails"><span (getUsersName) = getUserName($event)>Hey {{currentuser}}!</span><div class="userImg"><img src= "{{imgPath}}" alt=""></div></div>
   
 </header>
   <main>

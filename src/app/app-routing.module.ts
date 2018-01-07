@@ -6,7 +6,7 @@ import { ResultViewComponent } from './result-view/result-view.component';
 import { LoginViewComponent } from './login-view/login-view.component';
 
 const routes: Routes = [
-  // {path: '*', redirectTo: 'menuView', pathMatch: 'full'},
+  {path: '*', redirectTo: 'menuView', pathMatch: 'full'},
   {path: '', redirectTo: 'menuView', pathMatch: 'full'  },
   {path: 'menuView', component: MenuViewComponent},
   {path: 'addUserEvents', component: AddUserEventsComponent},

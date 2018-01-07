@@ -1,12 +1,22 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
+import { AddUserEventsComponent } from './add-user-events/add-user-events.component';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.less']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'Split your bills';
-  currentuser = 'There';
+  currentUser = 'There';
   imgPath= './app/images/dummy-ser.png';
+
+  getUserName(userName: string): void {
+    if (userName !== null) {
+    this.currentUser = userName;
+    }
+  }
+  ngOnInit() {
+
+  }
 }
