@@ -6,11 +6,12 @@
       {{title}}
     </h1>
   </div>
-  <div class="userDetails"><span (getUsersName) = getUserName($event)>Hey {{currentuser}}!</span><div class="userImg"><img src= "{{imgPath}}" alt=""></div></div>
+  <div class="userDetails"><span>Hey {{currentUser}}!</span><div class="userImg"><img src= "{{imgPath}}" alt=""></div></div>
   
 </header>
   <main>
-    <router-outlet></router-outlet>
+    <app-user-name-tb-shared (getUsersName) = getUserName($event)></app-user-name-tb-shared>
+    <router-outlet (getUsersName) = getUserName($event)></router-outlet>
 </main>
 
 <footer>

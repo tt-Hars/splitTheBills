@@ -1,0 +1,4 @@
+<div class="userNameDiv">
+    <input #userNameInput id="userNameInput" type="text" placeholder="{{nameTextPlaceholder}}"
+    (keyup.enter) = 'keyPressEnter(userNameInput.value)' (blur) = 'keyPressEnter(userNameInput.value)'> <!--(ngModel)] = 'userName'-->
+</div>

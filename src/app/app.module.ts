@@ -10,6 +10,7 @@ import { ResultViewComponent } from './result-view/result-view.component';
 import { LoginViewComponent } from './login-view/login-view.component';
 import { AddUserEventsModule } from './add-user-events/add-user-events.module';
 import { FormsModule } from '@angular/forms';
+import { UserNameTbSharedComponent } from './shared/user-name-tb-shared.component';
 
 
 @NgModule({
@@ -18,7 +19,8 @@ import { FormsModule } from '@angular/forms';
     MenuViewComponent,
     AddUserEventsComponent,
     ResultViewComponent,
-    LoginViewComponent
+    LoginViewComponent,
+    UserNameTbSharedComponent
   ],
   imports: [
     BrowserModule,
