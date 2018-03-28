@@ -1,21 +1,22 @@
 <div class="formHeading" [ngClass]="{'hideItem': isFormHeadingEleHidden}">
-    <h2>Start with adding your mates</h2>
-    <button class=" btn-primary" id="addUsers" (click) = 'addUserclicked();'>Click here<span class="glyphicon glyphicon-user"></span></button>
+    <h3 class="header">Start with adding your mates</h3>
+    <button class="waves-effect waves-light btn-large" id="addUsers" (click) = 'addUserclicked();'><i class="material-icons right">keyboard_arrow_right</i>Click here</button>
   </div>
 <div class="addUsersForm" [ngClass]="{'showItem': isAddUsersFormEleVisible, 'hideItem': isAddUsersFormEleHidden}">
-  <div class="usersList" *ngIf='userDetails && userDetails.length'>
-    <div class="enteredUser" *ngFor='let addedUser of userDetails'>
-      <label attr.id = 'user_{{addedUser.new_id}}'>{{addedUser.name}}</label><button class=" btn-danger" autofocus (click) = 'delUserFromUserDetails(addedUser.new_id)' id="removeUser_{{addedUser.new_id}}"><span class="glyphicon glyphicon-trash"></span></button>
-    </div>
-  </div>
   <div class="usersEnter">
     <form >
-      <input #foc type="text" class="userInfo" placeholder="User's Name" [(value)]="userValue">
-      <button type="submit" class="addUser btn-secondary" (click) = 'addUserToUserDetails(foc.value)'><span class="glyphicon glyphicon-plus"></span></button>
+      <input #foc type="text" class="userInfo" placeholder="Name" [(value)]="userValue">
+      <button type="submit" class="addUser btn-small waves-effect waves-light #90caf9 blue lighten-3" (click) = 'addUserToUserDetails(foc.value)'><i class="material-icons">add</i></button>
     </form>
+  </div>
+  <div class="usersList" *ngIf='userDetails && userDetails.length'>
+    <ul class="enteredUser collection" >
+      <li class="collection-item" *ngFor='let addedUser of userDetails'><span class="truncate" attr.id = 'user_{{addedUser.new_id}}'>{{addedUser.name}}</span><button class=" btn-small waves-effect waves-dark #ff1744 red accent-3" autofocus (click) = 'delUserFromUserDetails(addedUser.new_id)' id="removeUser_{{addedUser.new_id}}"><i class="material-icons">remove</i></button></li>
+    </ul>
   </div>
   <div class="allDoneButton">
     <span>All done? Proceed to add events</span>
-    <button class=" btn-success" id="usersAdded">Click here <span class="glyphicon glyphicon-ok"></span></button>
+    <a class="waves-effect waves-light btn #1de9b6 teal accent-3"><i class="material-icons right">check</i>Proceed</a>
+
   </div>
 </div>

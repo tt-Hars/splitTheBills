@@ -9,22 +9,54 @@
     justify-content: center;
     align-items: center;
     //color:#000;
-    .userInfo{
-        text-align: center;
+
+    .usersEnter{
+        width: 25%;
+        form{
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+        .userInfo{
+            text-align: center;
+            width: 82%;
+        }
     }
 
     .enteredUser{
         margin: 5px 0;
+        li{
+            padding: 7px 0;
+            border-bottom: 1px solid #eee;
+            &:last-child{
+                border-bottom: 0;
+            }
+        }
+
+        button{
+            margin-right: 5px;
+        }
+        span {
+            display: inline-block;
+            width: 286px;
+            text-align: center;
+            //background-color: #111;
+            margin-right: 5px;
+           
+        }
     }
 
     .allDoneButton{
         margin-top: 20px;
+        display: flex;
+        flex-direction: column;
+        height: 70px;
+        justify-content: space-between;
     }
-}
-.enteredUser label {
-    display: inline-block;
-    width: 172px;
-    text-align: center;
-    background-color: #111;
-    margin-right: 5px;
+    a{
+        width: 130px;
+        align-self: center;
+    }
 }

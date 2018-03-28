@@ -11,10 +11,16 @@ export class UserNameTbSharedComponent implements OnChanges {
   @Output() getUsersName: EventEmitter<string> = new EventEmitter<string>();
 
   keyPressEnter(nameValue: string): void {
-    this.getUsersName.emit(`${nameValue}`);
-    // const element = this._renderer.selectRootElement('#addUsers');
-    // element.focus();
-   // setTimeout(() => element.focus(), 0);
+    if(nameValue !==''){
+     // const element = this._renderer.selectRootElement('#addUsers');
+     // element.focus();
+      this.getUsersName.emit(`${nameValue}`);
+      //setTimeout(() => element.focus(), 0);
+    }
+      else{
+        const element = this._renderer.selectRootElement('#userNameInput');
+        element.focus();
+      }
   }
   constructor(private _renderer: Renderer2) { }
 
