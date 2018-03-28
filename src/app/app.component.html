@@ -10,8 +10,8 @@
   
 </header>
   <main>
-    <app-user-name-tb-shared (getUsersName) = getUserName($event)></app-user-name-tb-shared>
-    <router-outlet (getUsersName) = getUserName($event)></router-outlet>
+    <app-user-name-tb-shared (getUsersName) = getUserName($event) [ngClass]="{'hideItem': isEleHidden}"></app-user-name-tb-shared>
+    <router-outlet></router-outlet>
 </main>
 
 <footer>

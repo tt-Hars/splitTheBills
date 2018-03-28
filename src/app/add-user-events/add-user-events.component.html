@@ -1,19 +1,21 @@
-<div class="formHeading">
+<div class="formHeading" [ngClass]="{'hideItem': isFormHeadingEleHidden}">
     <h2>Start with adding your mates</h2>
-    <button id="addUsers">Click here<span class="glyphicon glyphicon-user"></span></button>
+    <button class=" btn-primary" id="addUsers" (click) = 'addUserclicked();'>Click here<span class="glyphicon glyphicon-user"></span></button>
   </div>
-<div class="addUsersForm">
-  <div class="usersList">
-    <div class="enteredUser" ngFor=()>
-      <label>{{addedUser}}</label><button><span class="glyphicon glyphicon-trash"></span></button>
+<div class="addUsersForm" [ngClass]="{'showItem': isAddUsersFormEleVisible, 'hideItem': isAddUsersFormEleHidden}">
+  <div class="usersList" *ngIf='userDetails && userDetails.length'>
+    <div class="enteredUser" *ngFor='let addedUser of userDetails'>
+      <label attr.id = 'user_{{addedUser.new_id}}'>{{addedUser.name}}</label><button class=" btn-danger" autofocus (click) = 'delUserFromUserDetails(addedUser.new_id)' id="removeUser_{{addedUser.new_id}}"><span class="glyphicon glyphicon-trash"></span></button>
     </div>
   </div>
   <div class="usersEnter">
-    <input type="text" class="userInfo" placeholder="User's Name">
-    <button id="addUser"><span class="glyphicon glyphicon-plus"></span></button>
+    <form >
+      <input #foc type="text" class="userInfo" placeholder="User's Name" [(value)]="userValue">
+      <button type="submit" class="addUser btn-secondary" (click) = 'addUserToUserDetails(foc.value)'><span class="glyphicon glyphicon-plus"></span></button>
+    </form>
   </div>
   <div class="allDoneButton">
     <span>All done? Proceed to add events</span>
-    <button id="usersAdded">Click here <span class="glyphicon glyphicon-ok"></span></button>
+    <button class=" btn-success" id="usersAdded">Click here <span class="glyphicon glyphicon-ok"></span></button>
   </div>
 </div>

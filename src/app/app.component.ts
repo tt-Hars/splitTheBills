@@ -10,10 +10,12 @@ export class AppComponent implements OnInit {
   title = 'Split your bills';
   currentUser = 'There';
   imgPath= './app/images/dummy-ser.png';
-
+  isEleVisible = true;
+  isEleHidden = false;
   getUserName(userName: string): void {
     if (userName !== null) {
     this.currentUser = userName;
+    this.isEleHidden = true;
     }
   }
   ngOnInit() {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'app-menu-view',
@@ -7,7 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuViewComponent implements OnInit {
 
-  constructor() { }
+  constructor(private _renderer: Renderer2) { }
+
+  focusIp() {
+    const element = this._renderer.selectRootElement('#addUsers');
+    element.focus();
+   // setTimeout(() => element.focus(), 0);
+  }
 
   ngOnInit() {
   }
