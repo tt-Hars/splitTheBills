@@ -11,8 +11,15 @@ import { LoginViewComponent } from './login-view/login-view.component';
 import { AddUserEventsModule } from './add-user-events/add-user-events.module';
 import { FormsModule } from '@angular/forms';
 import { UserNameTbSharedComponent } from './shared/user-name-tb-shared.component';
-
-
+/*
+import { MatFormFieldModule } from '@angular/material';
+import { MatInputModule } from '@angular/material';
+import { MatOptionModule } from '@angular/material';
+import { MatSelectModule } from '@angular/material';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatButtonModule} from '@angular/material';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+*/
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +33,16 @@ import { UserNameTbSharedComponent } from './shared/user-name-tb-shared.componen
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    AddUserEventsModule
+    AddUserEventsModule,
+/*
+    MatFormFieldModule,
+    MatInputModule,
+    MatOptionModule,
+    MatSelectModule,
+    MatButtonModule,
+    BrowserAnimationsModule,
+    MatProgressSpinnerModule
+*/
   ],
   providers: [],
   bootstrap: [AppComponent]

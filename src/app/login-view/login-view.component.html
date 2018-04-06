@@ -1,3 +1,20 @@
-<p>
-  login-view works!
-</p>
+
+<div class="LoginContainer">
+  <h1>Login Here</h1>
+  <!-- <div class='loader hidden'>
+    <mat-spinner></mat-spinner>
+  </div> -->
+  <!-- <h3>{{name + b_y}}</h3> -->
+  <div class="input-field col s6">
+  <input type="text" id="loginId" #loginId (keypress.enter) = 'validateLogin(loginId.value, password.value)' required autofocus>
+  <label for="loginId">Login ID</label>
+  </div>
+  <div class="input-field col s6">
+  <input type="text" id ="password" #password (keypress.enter) = 'validateLogin(loginId.value, password.value)' type="password" required>
+  <label for="password">password</label>
+</div>
+<button (click)='validateLogin(loginId.value, password.value)'>Login</button>
+
+<!-- {{people.results[0].name}}
+{{people.results[0].birth_year}} -->
+</div>
