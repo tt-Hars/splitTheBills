@@ -6,14 +6,14 @@
   </div> -->
   <!-- <h3>{{name + b_y}}</h3> -->
   <div class="input-field col s6">
-  <input type="text" id="loginId" #loginId (keypress.enter) = 'validateLogin(loginId.value, password.value)' required autofocus>
+  <input [(ngModel)]='Uname' type="text" id="loginId" #loginId (keypress.enter) = 'validateLogin()' required autofocus>
   <label for="loginId">Login ID</label>
   </div>
   <div class="input-field col s6">
-  <input type="text" id ="password" #password (keypress.enter) = 'validateLogin(loginId.value, password.value)' type="password" required>
+  <input [(ngModel)]='Upass' type="text" id ="password" #password (keypress.enter) = 'validateLogin()' type="password" required>
   <label for="password">password</label>
 </div>
-<button (click)='validateLogin(loginId.value, password.value)'>Login</button>
+<button (click)='validateLogin()'>Login</button>
 
 <!-- {{people.results[0].name}}
 {{people.results[0].birth_year}} -->

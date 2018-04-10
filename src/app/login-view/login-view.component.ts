@@ -7,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginViewComponent implements OnInit {
 
+  Uname;
+  Upass;
   constructor() { }
 
   ngOnInit() {

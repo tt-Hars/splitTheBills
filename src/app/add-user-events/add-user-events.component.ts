@@ -15,6 +15,10 @@ export class AddUserEventsComponent implements OnChanges, OnInit {
   userDetails: UserDetails[] = [];
   userValue = '';
   userCounter = 0;
+  isAddEventsFormEleVisible = false;
+  isAddEventsFormEleHidden = true;
+  isFromEvents = true;
+
 
   addUserclicked() {
     this.isAddUsersFormEleHidden = false;
@@ -22,6 +26,15 @@ export class AddUserEventsComponent implements OnChanges, OnInit {
     this.isFormHeadingEleHidden = true;
     const element = this._renderer.selectRootElement('.userInfo');
     setTimeout(() => element.focus(), 0);
+  }
+
+  showEventsBox() {
+   this.isAddUsersFormEleVisible = false;
+   this.isAddUsersFormEleHidden = true;
+   this.isAddEventsFormEleVisible = true;
+   this.isAddEventsFormEleHidden = false;
+   this.isFromEvents = true;
+
   }
 
   delUserFromUserDetails(val) {
