@@ -1,13 +1,20 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <header>
-  <span class="icon"><a routerLink="../menuView" routerLinkActive="active"><span>STB</span></a></span>
-  <div class="headHeading">
-    <h1 class="header">
-      {{title}}
-    </h1>
-  </div>
-  <div class="userDetails"><span>Hey {{currentUser}}!</span><div class="userImg"><img src= "{{imgPath}}" alt=""></div></div>
-  
+  <div class="row">
+    <div class="col s6 m2">
+    <span class="icon"><a routerLink="../menuView" routerLinkActive="active"><span>STB</span></a></span>
+    </div>
+    <div class="col hide-on-small-only m8">
+      <div class="headHeading">
+        <h1 class="header">
+          {{title}}
+        </h1>
+      </div>
+    </div>
+    <div class="col s6 m2">
+      <div class="userDetails"><span>Hey {{currentUser}}!</span><div class="userImg"><img src= "{{imgPath}}" alt=""></div></div>
+      </div>
+    </div>
 </header>
   <main>
     <app-user-name-tb-shared (getUsersName) = getUserName($event) [ngClass]="{'hideItem': isEleHidden}"></app-user-name-tb-shared>

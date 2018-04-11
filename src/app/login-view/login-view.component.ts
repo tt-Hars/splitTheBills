@@ -11,7 +11,7 @@ export class LoginViewComponent implements OnInit {
 
   ngOnInit() {
   }
-  validateLogin() {
+  validateLogin(id, pass) {
 
   }
 

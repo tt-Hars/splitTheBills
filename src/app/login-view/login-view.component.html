@@ -1,6 +1,6 @@
 
 <div class="LoginContainer">
-  <h1>Login Here</h1>
+  <!-- <h1>Login Here</h1> -->
   <!-- <div class='loader hidden'>
     <mat-spinner></mat-spinner>
   </div> -->
@@ -13,7 +13,8 @@
   <input type="text" id ="password" #password (keypress.enter) = 'validateLogin(loginId.value, password.value)' type="password" required>
   <label for="password">password</label>
 </div>
-<button (click)='validateLogin(loginId.value, password.value)'>Login</button>
+
+<button class="btn-floating btn-large waves-effect waves-light #23adff teal darken-2" (click)='validateLogin(loginId.value, password.value)'>Go</button>
 
 <!-- {{people.results[0].name}}
 {{people.results[0].birth_year}} -->
