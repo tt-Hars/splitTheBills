@@ -1,6 +1,6 @@
 <div class="userNameDiv">
         <div class="input-field col s6">
-                <input #userNameInput id="userNameInput" autofocus type="text"
+                <input #userNameInput [(ngModel)] = 'nameVal' id="userNameInput" autofocus type="text"
     (keyup.enter) = 'keyPressEnter(userNameInput.value)' (blur)="keyPressEnter(userNameInput.value)">
                 <label for="userNameInput">{{nameTextPlaceholder}}</label>
               </div>

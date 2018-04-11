@@ -2,21 +2,50 @@
     <h3 class="header">Start with adding your mates</h3>
     <button class="waves-effect waves-light btn-large" id="addUsers" (click) = 'addUserclicked();'><i class="material-icons right">keyboard_arrow_right</i>Click here</button>
   </div>
-<div class="addUsersForm" [ngClass]="{'showItem': isAddUsersFormEleVisible, 'hideItem': isAddUsersFormEleHidden}">
-  <div class="usersEnter">
-    <form >
-      <input #foc type="text" class="userInfo" placeholder="Name" [(value)]="userValue">
-      <button type="submit" class="addUser btn-small waves-effect waves-light #90caf9 blue lighten-3" (click) = 'addUserToUserDetails(foc.value)'><i class="material-icons">add</i></button>
-    </form>
+  <div class="addUsersForm" [ngClass]="{'showItem': isAddUsersFormEleVisible, 'hideItem': isAddUsersFormEleHidden, 'fromEvents': isFromEvents}">
+    <div class="usersEnter">
+      <form >
+        <input #foc type="text" class="userInfo" placeholder="Name" [(value)]="userValue">
+        <button type="submit" class="addUser btn-small waves-effect waves-light #90caf9 blue lighten-3" (click) = 'addUserToUserDetails(foc.value)'><i class="material-icons">add</i></button>
+      </form>
+    </div>
+    <div class="usersList" *ngIf='userDetails && userDetails.length'>
+      <ul class="enteredUser collection" >
+        <li class="collection-item" *ngFor='let addedUser of userDetails'>
+          <span class="truncate" attr.id = 'user_{{addedUser.new_id}}'>{{addedUser.name}}</span>
+          <button class=" btn-small waves-effect waves-dark #ff1744 red accent-3" autofocus (click) = 'delUserFromUserDetails(addedUser.new_id)' id="removeUser_{{addedUser.new_id}}"><i class="material-icons">remove</i></button>
+        </li>
+      </ul>
+    </div>
+    <div class="allDoneButton">
+      <span>All done? Proceed to add events</span>
+      <a (click) = 'showEventsBox()' class="waves-effect waves-light btn #1de9b6 teal accent-3"><i class="material-icons right">check</i>Proceed</a>
+    </div>
   </div>
-  <div class="usersList" *ngIf='userDetails && userDetails.length'>
-    <ul class="enteredUser collection" >
-      <li class="collection-item" *ngFor='let addedUser of userDetails'><span class="truncate" attr.id = 'user_{{addedUser.new_id}}'>{{addedUser.name}}</span><button class=" btn-small waves-effect waves-dark #ff1744 red accent-3" autofocus (click) = 'delUserFromUserDetails(addedUser.new_id)' id="removeUser_{{addedUser.new_id}}"><i class="material-icons">remove</i></button></li>
-    </ul>
+  <div class="addEventsForm row" [ngClass]="{'showItem': isAddEventsFormEleVisible, 'hideItem': isAddEventsFormEleHidden, 'isAddUsersActive':isFromEvents}">
+    <div class="col s2"></div>
+    <div class="addEventItem col m8">
+        <div class="input-field col m2">
+            <label class="active">Event name</label>
+            <input type="text" class="eventName validate" value="0">
+            <!-- <span class="helper-text" data-error="wrong" data-success="right"></span> -->
+        </div>
+      <ul class="collection">
+        <li *ngFor='let addedUser of userDetails' class="collection-item avatar">
+          <img src="./app/images/dummy-ser.png" alt="" class="circle">
+          <span class="title">{{addedUser.or_id}} {{addedUser.name}}</span>
+          <!-- <p>{{addedUser.name}}</p> -->
+          <div class="input-field inline">
+              <label class="active">Amount Contributed:</label>
+              <input type="number" class="amountCont validate" value="0">
+              <!-- <span class="helper-text" data-error="wrong" data-success="right"></span> -->
+          </div>
+          <label class="secondary-content">
+            <input type="checkbox"><span></span>
+          </label>
+        </li>
+      </ul>
+    </div>
+    <div class="col s2"></div>
   </div>
-  <div class="allDoneButton">
-    <span>All done? Proceed to add events</span>
-    <a class="waves-effect waves-light btn #1de9b6 teal accent-3"><i class="material-icons right">check</i>Proceed</a>
 
-  </div>
-</div>
