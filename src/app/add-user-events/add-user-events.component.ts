@@ -3,6 +3,7 @@ import { Component, OnInit, OnChanges, Output,
 import { fail } from 'assert';
 import {UserDetails} from '../ifsc';
 
+declare var M; 
 @Component({
   selector: 'app-add-user-events',
   templateUrl: './add-user-events.component.html',
@@ -19,8 +20,7 @@ export class AddUserEventsComponent implements OnChanges, OnInit {
   isAddEventsFormEleVisible = false;
   isAddEventsFormEleHidden = true;
   isFromEvents = true;
-
-
+  
   addUserclicked() {
     this.isAddUsersFormEleHidden = false;
     this.isAddUsersFormEleVisible = true;
@@ -30,12 +30,17 @@ export class AddUserEventsComponent implements OnChanges, OnInit {
   }
 
   showEventsBox() {
-   this.isAddUsersFormEleVisible = false;
-   this.isAddUsersFormEleHidden = true;
+   this.isAddUsersFormEleVisible = true;
+   this.isAddUsersFormEleHidden = false;
    this.isAddEventsFormEleVisible = true;
    this.isAddEventsFormEleHidden = false;
    this.isFromEvents = true;
 
+   let elem = document.querySelector('.modal');
+   console.log(elem);
+   let options;
+   let instance = M.Modal.init(elem, options);
+   instance.open();
   }
 
   delUserFromUserDetails(val) {
@@ -59,6 +64,10 @@ export class AddUserEventsComponent implements OnChanges, OnInit {
     setTimeout(() => element.focus(), 0);
   }
 
+  clearFields(){
+
+  }
+  
   listUsers() {
     this.userDetailsList = this.userDetails;
   }
