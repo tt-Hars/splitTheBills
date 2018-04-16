@@ -13,6 +13,7 @@ export class AddUserEventsComponent implements OnChanges, OnInit {
   isAddUsersFormEleHidden = true;
   isFormHeadingEleHidden = false;
   userDetails: UserDetails[] = [];
+  userDetailsList: UserDetails[] = [];
   userValue = '';
   userCounter = 0;
   isAddEventsFormEleVisible = false;
@@ -58,6 +59,9 @@ export class AddUserEventsComponent implements OnChanges, OnInit {
     setTimeout(() => element.focus(), 0);
   }
 
+  listUsers() {
+    this.userDetailsList = this.userDetails;
+  }
   constructor(private _renderer: Renderer2) { }
 
   ngOnChanges() {

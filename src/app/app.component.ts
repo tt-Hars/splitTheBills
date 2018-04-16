@@ -11,7 +11,7 @@ export class AppComponent implements OnInit {
   currentUser = 'There';
   imgPath= './app/images/dummy-ser.png';
   isEleVisible = true;
-  isEleHidden = false;
+  isEleHidden = true;
   getUserName(userName: string): void {
     if (userName !== null) {
     this.currentUser = userName;
