@@ -1,9 +1,9 @@
 import { Component, OnInit, OnChanges, Output,
   EventEmitter, Input, Directive, ElementRef, Inject, Renderer2, Renderer} from '@angular/core';
 import { fail } from 'assert';
-import {UserDetails} from '../ifsc';
+import {UserDetails, EventDetails} from '../ifsc';
 
-declare var M; 
+declare var M;
 @Component({
   selector: 'app-add-user-events',
   templateUrl: './add-user-events.component.html',
@@ -20,7 +20,10 @@ export class AddUserEventsComponent implements OnChanges, OnInit {
   isAddEventsFormEleVisible = false;
   isAddEventsFormEleHidden = true;
   isFromEvents = true;
-  
+  eventDetails: EventDetails[] = [];
+  eventDetailsList: EventDetails[] = [];
+  userAddWarningMsg = '';
+
   addUserclicked() {
     this.isAddUsersFormEleHidden = false;
     this.isAddUsersFormEleVisible = true;
@@ -36,10 +39,10 @@ export class AddUserEventsComponent implements OnChanges, OnInit {
    this.isAddEventsFormEleHidden = false;
    this.isFromEvents = true;
 
-   let elem = document.querySelector('.modal');
+   const elem = document.querySelector('.modal');
    console.log(elem);
-   let options;
-   let instance = M.Modal.init(elem, options);
+   const options = {};
+   const instance = M.Modal.init(elem, options);
    instance.open();
   }
 
@@ -55,19 +58,35 @@ export class AddUserEventsComponent implements OnChanges, OnInit {
   }
 
   addUserToUserDetails(val) {
-    this.userDetails.push({or_id: this.userCounter, name: val, new_id: this.userCounter} );
-    this.userValue = '';
-    this.userCounter++;
-    this.refreshArrayIds();
     const element = this._renderer.selectRootElement('.userInfo');
-    element.value = '';
-    setTimeout(() => element.focus(), 0);
+    if (document.getElementById('addUserIpt').className.indexOf('invalid') < 0) {
+      this.userDetails.push({or_id: this.userCounter, name: val, new_id: this.userCounter} );
+      this.userValue = '';
+      this.userCounter++;
+      this.refreshArrayIds();
+      this.listUsers();
+    } else {
+      this.userAddWarningMsg = 'Please provide input';
+    }
+      element.value = '';
+      setTimeout(() => element.focus(), 0);
   }
 
-  clearFields(){
+  addEventToEventDetails() {
 
   }
-  
+
+  clearFields() {
+
+  }
+
+  openCal() {
+    const elem = document.querySelector('.datepicker');
+    const options = {};
+    const instance = M.Datepicker.init(elem, options);
+    instance.open();
+  }
+
   listUsers() {
     this.userDetailsList = this.userDetails;
   }

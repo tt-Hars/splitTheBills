@@ -4,7 +4,7 @@ export interface UserDetails {
     name: string;
 }
 
-export interface eventDetails{
+export interface EventDetails {
     or_id: number;
     new_id: number;
     event_name: string;
