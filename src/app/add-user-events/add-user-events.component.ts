@@ -23,7 +23,8 @@ export class AddUserEventsComponent implements OnChanges, OnInit {
   eventDetails: EventDetails[] = [];
   eventDetailsList: EventDetails[] = [];
   userAddWarningMsg = '';
-
+  isUserListHidden =true;
+  userListShowHideText = 'Show all';
   addUserclicked() {
     this.isAddUsersFormEleHidden = false;
     this.isAddUsersFormEleVisible = true;
@@ -73,7 +74,7 @@ export class AddUserEventsComponent implements OnChanges, OnInit {
   }
 
   addEventToEventDetails() {
-
+    
   }
 
   clearFields() {
@@ -85,6 +86,11 @@ export class AddUserEventsComponent implements OnChanges, OnInit {
     const options = {};
     const instance = M.Datepicker.init(elem, options);
     instance.open();
+  }
+
+  showUsersInEvent(){
+    this.isUserListHidden = this.isUserListHidden ? false : true;
+    this.userListShowHideText = this.isUserListHidden ? 'Show all ' : 'Hide '
   }
 
   listUsers() {

@@ -79,10 +79,10 @@
                 <label>Search user</label>
                 <input type="text" class="searchUser">
               </div>
-              <a (click)='listUsers()' class="right waves-effect waves-light">
-                <i class="material-icons right">chevron_right</i>Show all users</a>
+              <a (click)='showUsersInEvent();' class="right waves-effect waves-light">
+                <i class="material-icons right">chevron_right</i>{{userListShowHideText}} users</a>
             </div>
-            <div class="resultArea row">
+            <div class="resultArea row" [ngClass]="{'showItem': isUserListVisible, 'hideItem': isUserListHidden}">
               <ul class="collection usersList">
                 <li *ngFor='let userD of userDetailsList' class="collection-item avatar">
                   <img src="./app/images/dummy-ser.png" alt="" class="circle">
