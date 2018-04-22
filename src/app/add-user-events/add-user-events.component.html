@@ -54,21 +54,21 @@
           <div class="col m4">
             <div class="input-field col s12">
               <label class="active">Event's name</label>
-              <input type="text" class="eventName validate" data-length="30" required>
+              <input type="text" id = 'eventName' #evName class="eventName validate" data-length="30" required>
               <!-- <span class="helper-text" data-error="wrong" data-success="right"></span> -->
             </div>
             <div class="input-field col s12">
-              <textarea id="textarea1" class="eventDesc validate materialize-textarea" data-length="120"></textarea>
+              <textarea id="textarea1" id ='eventDesc' #evDesc class="eventDesc validate materialize-textarea" data-length="120"></textarea>
               <label for="textarea1">Event's description</label>
             </div>
             <div class="input-field col s12">
               <label class="active">Total amount spent</label>
-              <input type="number" class="amountCont validate" required value="0">
+              <input type="number" #evAmt id ='totAmntCont' class="totAmntCont validate" required value="0">
               <!-- <span class="helper-text" data-error="wrong" data-success="right"></span> -->
             </div>
             <div class="input-field col s12">
               <label class="active">Event's date</label>
-              <input type="text" (click)='openCal()' placeholder="Select date" (focus)='openCal()' class="datepicker">
+              <input #evDate type="text" id='evDate' (click)='openCal()' placeholder="Select date" (focus)='openCal()' class="datepicker">
               <!-- <span class="helper-text" data-error="wrong" data-success="right"></span> -->
             </div>
 
@@ -86,15 +86,15 @@
               <ul class="collection usersList">
                 <li *ngFor='let userD of userDetailsList' class="collection-item avatar">
                   <img src="./app/images/dummy-ser.png" alt="" class="circle">
-                  <span class="title">{{userD.or_id}} {{userD.name}}</span>
+                  <span class="title usrDet" >{{userD.or_id}} {{userD.name}}</span>
                   <!-- <p>{{addedUser.name}}</p> -->
                   <div class="input-field inline">
                     <label class="active">Amount Contributed:</label>
-                    <input type="number" class="amountCont validate" value="0">
+                    <input type="number" class="indvAmntCont validate" value="0">
                     <!-- <span class="helper-text" data-error="wrong" data-success="right"></span> -->
                   </div>
                   <label class="secondary-content">
-                    <input type="checkbox">
+                    <input type="checkbox" class='indvActive'>
                     <span></span>
                   </label>
                 </li>
@@ -108,7 +108,7 @@
             <a class="waves-effect waves-light modal-close btn">
               <i class="material-icons left">chevron_left</i>Modify users</a>
             <br>
-            <a id="addEventBtn" (click)='addEventToEventDetails()' class="waves-effect waves-light modal-close btn #90caf9 blue lighten-3">
+            <a id="addEventBtn" (click)='addEventToEventDetails(evName.value, evDesc.value, evAmt.value, evDate.value)' class="waves-effect waves-light modal-close btn #90caf9 blue lighten-3">
               <i class="material-icons right ">add</i>Add this</a>
             <a (click)='clearFields();' class="waves-effect waves-light btn #ff1744 red accent-3">
               <i class="material-icons right">clear</i>Clear</a>
