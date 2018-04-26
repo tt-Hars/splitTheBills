@@ -11,11 +11,11 @@ export interface EventDetails {
     event_tot_amt: number;
     event_desc: string;
     event_date: string;
-    users_desc : [{
+    users_desc: [{
         id: number;
-        //name: string;
+        // name: string;
         amount_cont: number;
         user_actve: boolean;
     }];
-    //users_desc: any;
+    // users_desc: any;
 }
