@@ -19,8 +19,8 @@
                 <p class="menuItemText">Want to see your past events?</p>
               </div>
               <div class="card-action">
-                  <a routerLink="../loginView" routerLinkActive="active"><span>LOGIN</span></a>
-                  <a routerLink="../loginView" routerLinkActive="active"><span>REGISTER</span></a>
+                  <a routerLink="../lrView" [queryParams]="{ from: 'login'}" routerLinkActive="active"><span>LOGIN</span></a>
+                  <a routerLink="../lrView" [queryParams]="{ from: 'register'}" routerLinkActive="active"><span>REGISTER</span></a>
               </div>
             </div>
         </div>

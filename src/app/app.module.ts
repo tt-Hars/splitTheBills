@@ -11,6 +11,8 @@ import { LoginViewComponent } from './login-view/login-view.component';
 import { AddUserEventsModule } from './add-user-events/add-user-events.module';
 import { FormsModule } from '@angular/forms';
 import { UserNameTbSharedComponent } from './shared/user-name-tb-shared.component';
+import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
+import { DataServiceService } from './data-service.service';
 /*
 import { MatFormFieldModule } from '@angular/material';
 import { MatInputModule } from '@angular/material';
@@ -27,7 +29,8 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     AddUserEventsComponent,
     ResultViewComponent,
     LoginViewComponent,
-    UserNameTbSharedComponent
+    UserNameTbSharedComponent,
+    UserDashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -44,7 +47,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatProgressSpinnerModule
 */
   ],
-  providers: [],
+  providers: [DataServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
