@@ -4,6 +4,7 @@ import {
 } from '@angular/core';
 import { fail } from 'assert';
 import { UserDetails, EventDetails } from '../ifsc';
+import {DataServiceService} from '../data-service.service';
 
 declare var M;
 @Component({
@@ -68,6 +69,7 @@ export class AddUserEventsComponent implements OnChanges, OnInit {
       this.userCounter++;
       this.refreshArrayIds();
       this.listUsers();
+      this._ds.setUsersList(this.userDetails);
     } else {
       this.userAddWarningMsg = 'Please provide input';
     }
@@ -121,6 +123,7 @@ export class AddUserEventsComponent implements OnChanges, OnInit {
     });
     or_id++;
     new_id = or_id;
+    this._ds.setEventsList(this.eventDetails);
     console.log(this.eventDetails);
   }
 
@@ -166,7 +169,7 @@ export class AddUserEventsComponent implements OnChanges, OnInit {
   listUsers() {
     this.userDetailsList = this.userDetails;
   }
-  constructor(private _renderer: Renderer2) { }
+  constructor(private _renderer: Renderer2, private _ds: DataServiceService) { }
 
   ngOnChanges() {
 
