@@ -1,21 +1,67 @@
-
-<div class="LoginContainer">
-  <!-- <h1>Login Here</h1> -->
-  <!-- <div class='loader hidden'>
-    <mat-spinner></mat-spinner>
-  </div> -->
-  <!-- <h3>{{name + b_y}}</h3> -->
-  <div class="input-field col s6">
-  <input [(ngModel)]='Uname' type="text" id="loginId" #loginId (keypress.enter) = 'validateLogin()' required autofocus>
-  <label for="loginId">Login ID</label>
+<div class="lrView row">
+  <div class="col m4"></div>
+  <div class="loginContainer hideItem col s12 m4" id="loginContainer">
+    <form (ngSubmit)="validateLogin(loginId.value, password.value)" #loginForm="ngForm">
+      <div class="row">
+        <div class="input-field col s12">
+          <input [(ngModel)]='Uname' name="loginId" type="text" class="validate" id="loginId" #loginId (keypress.enter)='validateLogin()'
+            required autofocus>
+          <label for="loginId">Login ID</label>
+          <span class="helper-text" [attr.data-error]="userNameWarningMsg"></span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input [(ngModel)]='Upass' name="lPassword" type="text" class="validate" id="lPassword" #password (keypress.enter)='validateLogin()'
+            type="password" required>
+          <label for="lPassword">password</label>
+          <span class="helper-text" [attr.data-error]="userPwdWarningMsg"></span>
+        </div>
+      </div>
+      <button [disabled]="!loginForm.form.valid" id="lgnFrmSbmtBtn" class="btn-floating btn-large waves-effect waves-light #23adff teal darken-2">Go</button>
+      <div class="checkUser">
+        <span>Not registered? </span>
+        <a routerLink="../lrView" [queryParams]="{ from: 'register'}" routerLinkActive="active"><span>Click here</span></a>
+      </div>
+    </form>
   </div>
-  <div class="input-field col s6">
-  <input [(ngModel)]='Upass' type="text" id ="password" #password (keypress.enter) = 'validateLogin()' type="password" required>
-  <label for="password">password</label>
-</div>
 
-<button class="btn-floating btn-large waves-effect waves-light #23adff teal darken-2" (click)='validateLogin(loginId.value, password.value)'>Go</button>
-
-<!-- {{people.results[0].name}}
-{{people.results[0].birth_year}} -->
+  <div class="registerContainer hideItem col s12 m4" id="registerContainer">
+    <form (ngSubmit)="registerUser()" #registerForm="ngForm">
+      <div class="">
+        <div class="input-field col s12">
+          <input type="text" class="validate" id="userName" name="userName" [(ngModel)] = "rName" #RName required autofocus>
+          <label for="userName">Name</label>
+          <span class="helper-text" data-success='Nice name :-)' data-error="Please enter your name"></span>
+        </div>
+      </div>
+      <div class="">
+        <div class="input-field col s12">
+          <input type="text" class="validate" id="userID" [(ngModel)] = "rUserID" name="userID" #RID required>
+          <label for="userID">User ID</label>
+          <span class="helper-text" attr.data-success='{{rUserID}} will be registered' data-error="User ID empty or already exists :-("></span>
+        </div>
+      </div>
+      <div class="">
+        <div class="input-field col s12">
+          <input type="password" class="validate" (blur) = 'matchPasswords(RPwd.value, RCpwd.vaule)' id="rPassword" [(ngModel)] = "rPassword" name="rPassword" #RPwd required>
+          <label for="rPassword">Password</label>
+          <span class="helper-text" [attr.data-success]="rPwdGoodEnough" [attr.data-error]="userPwdWarningMsg"></span>
+        </div>
+      </div>
+      <div class="">
+        <div class="input-field col s12">
+          <input type="password" class="validate" (blur) = 'matchPasswords(RPwd.value, RCpwd.value)' id="cnfPassword" [(ngModel)] = "rCnfPassword" name="cnfPassword" #RCpwd required>
+          <label for="cnfPassword">Confirm password</label>
+          <span class="helper-text"  [attr.data-success]="rPwdMatched" [attr.data-error]="rPwdDMatch"></span>
+        </div>
+      </div>
+      <button [disabled]="!registerForm.form.valid" id="rgstFrmSbmtBtn" class="btn-floating btn-large waves-effect waves-light #23adff teal darken-2">Go</button>
+      <div class="checkUser">
+        <span>Already registered? </span>
+        <a routerLink="../lrView" [queryParams]="{ from: 'login'}" routerLinkActive="active"><span>Click here</span></a>
+      </div>
+    </form>
+  </div>
+  <div class="col m4"></div>
 </div>
