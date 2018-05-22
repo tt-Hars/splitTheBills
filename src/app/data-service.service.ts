@@ -3,6 +3,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { UserDetails } from './ifsc';
 import { EventDetails } from './ifsc';
 import { RegisteredUserDetails } from './ifsc';
+import {Observable} from 'rxjs/observable';
 
 @Injectable()
 export class DataServiceService {
@@ -14,6 +15,7 @@ export class DataServiceService {
   currentName = this._userName.asObservable();
   currentUsersList = this._users.asObservable();
   currentEventsList = this._events.asObservable();
+  regUserDetails = this._regUsers.asObservable();
   constructor() { }
 
   setUserName(uName: string) {
@@ -29,5 +31,4 @@ export class DataServiceService {
   setRegUsersList(regUsersList: any[]) {
     this._regUsers.next(regUsersList);
   }
-
 }
