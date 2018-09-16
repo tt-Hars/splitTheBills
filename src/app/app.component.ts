@@ -1,6 +1,6 @@
 import { Component, OnInit, OnChanges } from '@angular/core';
 import { AddUserEventsComponent } from './add-user-events/add-user-events.component';
-import { DataServiceService } from "./data-service.service";
+import { DataServiceService } from './data-service.service';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +9,7 @@ import { DataServiceService } from "./data-service.service";
 })
 export class AppComponent implements OnInit {
 
-  constructor(private _ds: DataServiceService){}
+  constructor(private _ds: DataServiceService) {}
   title = 'Split your bills';
   currentUser = 'There';
   imgPath= './app/images/dummy-ser.png';
@@ -22,6 +22,6 @@ export class AppComponent implements OnInit {
     }
   }
   ngOnInit() {
-    this._ds.currentName.subscribe(message => this.currentUser = message)
+    this._ds.currentName.subscribe(message => this.currentUser = message);
   }
 }

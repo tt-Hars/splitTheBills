@@ -27,7 +27,7 @@
   </div>
 
   <div class="registerContainer hideItem col s12 m4" id="registerContainer">
-    <form (ngSubmit)="registerUser()" #registerForm="ngForm">
+    <form (ngSubmit)="saveRegUserDetails()" #registerForm="ngForm">
       <div class="">
         <div class="input-field col s12">
           <input type="text" class="validate" id="userName" name="userName" [(ngModel)] = "rName" #RName required autofocus>

@@ -87,6 +87,7 @@ export class AddUserEventsComponent implements OnChanges, OnInit {
       this.userCounter++;
       this.refreshArrayIds();
       this.listUsers();
+      this._ds.setUsersList(this.userDetails);
     } else {
       this.userAddWarningMsg = 'Please provide input';
     }
@@ -106,14 +107,14 @@ export class AddUserEventsComponent implements OnChanges, OnInit {
     let indvTotalAmt = [];
     
     Array.prototype.forEach.call(indvAmtNodeList, function (currentValue, currentIndex) {
-      indvAmt.push({ val: currentValue.value, id: currentIndex })
+      indvAmt.push({ val: currentValue.value, id: currentIndex });
     });
     Array.prototype.forEach.call(indvActiveNodeList, function (currentValue, currentIndex) {
-      indvActive.push({ val: currentValue.checked, id: currentIndex })
+      indvActive.push({ val: currentValue.checked, id: currentIndex });
     });
     Array.prototype.forEach.call(indvDetNodeList, function (currentValue, currentIndex) {
-      const getId = currentValue.innerText.substring(0,1);
-      indvIds.push({ val: getId, id: currentIndex })
+      const getId = currentValue.innerText.substring(0, 1);
+      indvIds.push({ val: getId, id: currentIndex });
     });
 
     const resArray = this.createUsersListArray(indvIds, indvAmt, indvActive);
@@ -147,18 +148,18 @@ export class AddUserEventsComponent implements OnChanges, OnInit {
   }
 
   clearFields() {
-    const indvAmtNodeList = Array.from(document.querySelectorAll('.indvAmntCont'));   //Array.from
+    const indvAmtNodeList = Array.from(document.querySelectorAll('.indvAmntCont'));
     const indvActiveNodeList = Array.from(document.querySelectorAll('.indvActive'));
     const indvDetNodeList = Array.from(document.querySelectorAll('.usrDet'));
- 
+
     Array.prototype.forEach.call(indvAmtNodeList, function (currentValue, currentIndex) {
       currentValue.value = 0;
     });
     Array.prototype.forEach.call(indvActiveNodeList, function (currentValue, currentIndex) {
       currentValue.checked = false;
     });
-    (<HTMLInputElement>document.getElementById('eventName')).value='';
-    (<HTMLInputElement>document.getElementById('eventDesc')).value='';
+    (<HTMLInputElement>document.getElementById('eventName')).value = '';
+    (<HTMLInputElement>document.getElementById('eventDesc')).value = '';
     (<HTMLInputElement>document.getElementById('totAmntCont')).value = '0';
     (<HTMLInputElement>document.getElementById('evDate')).value='';
     M.toast({html: 'Entries cleared.'});

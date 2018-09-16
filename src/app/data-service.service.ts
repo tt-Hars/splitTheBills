@@ -1,13 +1,22 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject } from 'rxjs/BehaviorSubject';
-import {EventDetails} from './ifsc'
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { UserDetails } from './ifsc';
+import { EventDetails } from './ifsc';
+import { RegisteredUserDetails } from './ifsc';
+import {Observable} from 'rxjs/observable';
 
 @Injectable()
 export class DataServiceService {
-  // public eventDetails;
-  private _userName = new BehaviorSubject("There!");
+
+  private _userName = new BehaviorSubject('There!');
+  private _users = new BehaviorSubject([]);
+  private _events = new BehaviorSubject([]);
+  private _regUsers = new BehaviorSubject([]);
   private _eventDetails = new BehaviorSubject([]);
   currentName = this._userName.asObservable();
+  currentUsersList = this._users.asObservable();
+  currentEventsList = this._events.asObservable();
+  regUserDetails = this._regUsers.asObservable();
   eventDetails = this._eventDetails.asObservable();
   constructor() { }
 
@@ -15,8 +24,16 @@ export class DataServiceService {
     this._userName.next(uName);
   }
 
+  setUsersList(userList: any[]) {
+    this._users.next(userList);
+  }
+  setEventsList(eventList: any[]) {
+    this._events.next(eventList);
+  }
+  setRegUsersList(regUsersList: any[]) {
+    this._regUsers.next(regUsersList);
+  }
   passEventDetails(evtD: EventDetails[]) {
     this._eventDetails.next(evtD);
   }
-
 }
