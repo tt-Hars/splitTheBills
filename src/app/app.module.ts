@@ -13,6 +13,7 @@ import { FormsModule } from '@angular/forms';
 import { UserNameTbSharedComponent } from './shared/user-name-tb-shared.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 import { DataServiceService } from './data-service.service';
+import { HttpClientModule } from '@angular/common/http'
 /*
 import { MatFormFieldModule } from '@angular/material';
 import { MatInputModule } from '@angular/material';
@@ -37,6 +38,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     FormsModule,
     AppRoutingModule,
     AddUserEventsModule,
+    HttpClientModule
 /*
     MatFormFieldModule,
     MatInputModule,

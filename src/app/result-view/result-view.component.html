@@ -1,3 +1,19 @@
-<p>
-  result-view works!
-</p>
+<ng-container *ngIf="1">
+  <div class="row">
+    <div class="col m6" *ngFor = "let event of passedEventDetails"> <!--*ngFor = "let event of passedEventDetails"-->
+      <div class="card">
+        <div class="card-image waves-effect waves-block waves-light">
+          <img class="activator" src="https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE2jIvp?ver=d72e&q=60&m=6&h=450&w=800&b=%23FFFFFFFF&l=f&o=t&aim=true">
+        </div>
+        <div class="card-content">
+          <span class="card-title activator grey-text text-darken-4">Card Title<i class="material-icons right">more_vert</i></span>
+          <p><a href="#">This is a link</a></p>
+        </div>
+        <div class="card-reveal">
+          <span class="card-title grey-text text-darken-4">Card Title<i class="material-icons right">close</i></span>
+          <p>Here is some more information about this product that is only revealed once clicked on.</p>
+        </div>
+      </div>
+  </div>
+</div>
+</ng-container>

@@ -2,8 +2,10 @@ import {
   Component, OnInit, OnChanges, Output,
   EventEmitter, Input, Directive, ElementRef, Inject, Renderer2, Renderer
 } from '@angular/core';
-import { fail } from 'assert';
 import { UserDetails, EventDetails } from '../ifsc';
+import { ISubscription } from 'rxjs/Subscription';
+import { DataServiceService } from "../data-service.service";
+import { Router } from '@angular/router';
 
 declare var M;
 @Component({
@@ -17,14 +19,18 @@ export class AddUserEventsComponent implements OnChanges, OnInit {
   isFormHeadingEleHidden = false;
   userDetails: UserDetails[] = [];
   userDetailsList: UserDetails[] = [];
+  filteredUsersList: UserDetails[] =[];
   userValue = '';
   userCounter = 0;
+  eventCounter = 0;
   isAddEventsFormEleVisible = false;
   isAddEventsFormEleHidden = true;
   isFromEvents = true;
   eventDetails: EventDetails[] = [];
   eventDetailsList: EventDetails[] = [];
   userAddWarningMsg = '';
+  amtDescrepancyMsg = '';
+  addProceedCnfrmtnMsg = '';
   isUserListHidden = true;
   userListShowHideText = 'Show all';
   addUserclicked() {
@@ -42,11 +48,24 @@ export class AddUserEventsComponent implements OnChanges, OnInit {
     this.isAddEventsFormEleHidden = false;
     this.isFromEvents = true;
 
-    const elem = document.querySelector('.modal');
-    console.log(elem);
-    const options = {};
-    const instance = M.Modal.init(elem, options);
+    const elem = document.querySelector('#addEvent');
+    const instance = M.Modal.init(elem, {});
     instance.open();
+  }
+
+  public openModifyuserDialog() : void {
+    const elem = document.querySelector('#modifyUsersContainer');
+    const instance = M.Modal.init(elem, {});
+    instance.open();
+  }
+
+  public closeModifyUsersDialog(operation) {
+    if(operation === 'update'){
+      console.log('update');
+    }
+    const elem = document.querySelector('#modifyUsersContainer');
+    const instance = M.Modal.init(elem, {});
+    instance.close();
   }
 
   delUserFromUserDetails(val) {
@@ -79,16 +98,13 @@ export class AddUserEventsComponent implements OnChanges, OnInit {
     let indvAmt = [];
     let indvIds = [];
     let indvActive = [];
-    let or_id = 0;
-    let new_id = 0;
-    /*const indvAmtNodeList = document.querySelectorAll('.indvAmntCont');   //Array.from
-    const indvActiveNodeList = document.querySelectorAll('.indvActive');
-    const indvDetNodeList = document.querySelectorAll('.usrDet');*/
-   const indvAmtNodeList = Array.from(document.querySelectorAll('.indvAmntCont'));   //Array.from
-   const indvActiveNodeList = Array.from(document.querySelectorAll('.indvActive'));
-   const indvDetNodeList = Array.from(document.querySelectorAll('.usrDet'));
-
-   
+    // let or_id = 0;
+    // let new_id = 0;
+    const indvAmtNodeList = Array.from(document.querySelectorAll('.indvAmntCont'));   //Array.from
+    const indvActiveNodeList = Array.from(document.querySelectorAll('.indvActive'));
+    const indvDetNodeList = Array.from(document.querySelectorAll('.usrDet'));
+    let indvTotalAmt = [];
+    
     Array.prototype.forEach.call(indvAmtNodeList, function (currentValue, currentIndex) {
       indvAmt.push({ val: currentValue.value, id: currentIndex })
     });
@@ -100,35 +116,31 @@ export class AddUserEventsComponent implements OnChanges, OnInit {
       indvIds.push({ val: getId, id: currentIndex })
     });
 
-    /*indvAmtNodeList.forEach( (currentValue, currentIndex) => {
-      indvAmt.push({ val: currentValue.value, id: currentIndex })
-    });
-
-    indvActiveNodeList.forEach( (currentValue, currentIndex) => {
-      indvActive.push({ val: currentValue.checked, id: currentIndex })
-    });
-
-    indvDetNodeList.forEach( (currentValue, currentIndex) => {
-      const getId = currentValue.innerText.substring(0,1);
-      indvIds.push({ val: getId, id: currentIndex })
-    });*/
-
     const resArray = this.createUsersListArray(indvIds, indvAmt, indvActive);
-    
-
-    //console.log(evName, evDesc, evTotAmt, evDate);
-    //console.log(indvAmt, indvActive);
-    this.eventDetails.push({or_id, new_id,event_name: evName,event_tot_amt: evTotAmt,event_desc: evDesc,event_date: evDate,users_desc: resArray});
-    or_id++;
-    new_id = or_id;
-    console.log(this.eventDetails);
+    if(resArray.length>0)
+    indvTotalAmt = resArray.filter(act => act.user_actve).map(val => val.amount_cont).reduce((a,b) => a+b);
+    if(evTotAmt == indvTotalAmt){
+      this.eventDetails.push({or_id: this.eventCounter, new_id: this.eventCounter, event_name: evName,event_tot_amt: evTotAmt,event_desc: evDesc,event_date: evDate,users_desc: resArray});
+      this.eventCounter++;
+      // new_id = or_id;
+      console.log(this.eventDetails);
+      this.addProceedCnfrmtnMsg = "Event details are added successfully. Do you want to add another event or proceed for result?";
+      let elem = document.querySelector('#addProceedCnfrmtn');
+      let instance = M.Modal.init(elem,{});
+      instance.open();
+      this.eventDetailsList = this.eventDetails;
+      M.toast({html: 'Event added.'})
+    }
+    else{
+      M.toast({html: 'Seems some descrepancy in amounts. Please Tally'});
+    }
   }
 
   createUsersListArray(arr1, arr2, arr3) : any{
-    let result = [{}];
+    let result = [];
     for(let i = 0; i< arr1.length; i++){
       if(i == arr1[i].id && i == arr2[i].id && i == arr3[i].id){
-        result.push({id:arr1[i].val, amount_cont:arr2[i].val, user_actve:arr3[i].val})
+        result.push({id:arr1[i].val, amount_cont:parseInt(arr2[i].val), user_actve:arr3[i].val});
       }
     }
     return result;
@@ -149,6 +161,7 @@ export class AddUserEventsComponent implements OnChanges, OnInit {
     (<HTMLInputElement>document.getElementById('eventDesc')).value='';
     (<HTMLInputElement>document.getElementById('totAmntCont')).value = '0';
     (<HTMLInputElement>document.getElementById('evDate')).value='';
+    M.toast({html: 'Entries cleared.'});
   }
 
   openCal() {
@@ -159,14 +172,38 @@ export class AddUserEventsComponent implements OnChanges, OnInit {
   }
 
   showUsersInEvent() {
-    this.isUserListHidden = this.isUserListHidden ? false : true;
+    this.filteredUsersList = this.userDetails;
+    const searchBarContent = <HTMLInputElement>document.getElementById('userSearchBar');
+    this.isUserListHidden = this.isUserListHidden || searchBarContent.value === "" ? false : true;
     this.userListShowHideText = this.isUserListHidden ? 'Show all ' : 'Hide '
   }
 
   listUsers() {
     this.userDetailsList = this.userDetails;
   }
-  constructor(private _renderer: Renderer2) { }
+
+  public searchUsersInList(serachString){
+    this.isUserListHidden = false;
+    if(!serachString)   this.isUserListHidden = true;
+    this.filteredUsersList = this.userDetails.filter(val => val.name.includes(serachString));
+
+  }
+
+  public closeaddProceedCnfrmtnDialog(evtType){
+    if(evtType === 'add'){
+      this.clearFields();
+    }
+
+    else if(evtType === 'proceed'){
+      this._ds.passEventDetails(this.eventDetails);
+      this._router.navigate(['./resultView']);
+    }
+    const elem = document.querySelector('#addProceedCnfrmtn');
+    const instance = M.Modal.init(elem,{});
+    instance.close();
+  }
+  
+  constructor(private _renderer: Renderer2, private _router: Router, private _ds: DataServiceService) { }
 
   ngOnChanges() {
 

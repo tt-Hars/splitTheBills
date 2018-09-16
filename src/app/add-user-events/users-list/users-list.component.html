@@ -1,0 +1,25 @@
+<div class="usersList row" *ngIf='userDetails && userDetails.length'>
+  <div class="col m3"></div>
+  <ul class="enteredUser collection col m6 center">
+    <ng-container>
+    <li class="collection-item" *ngFor='let addedUser of userDetails'>
+      <span class="truncate" attr.id='user_{{addedUser.new_id}}'>{{addedUser.name}}</span>
+      <button class=" btn-small waves-effect waves-dark #ff1744 red accent-3" (click)='delUserFromUserDetails(addedUser.new_id)'
+        id="removeUser_{{addedUser.new_id}}">
+        <i class="material-icons">remove</i>
+      </button>
+    </li>
+  </ng-container>
+  <ng-container>
+    
+  </ng-container>
+  </ul>
+  <div class="col m3"></div>
+</div>
+
+<ul class="enteredUser collection col m6 center">
+  <li class="collection-item" *ngFor='let addedUser of userDetailsList'>
+    <span class="truncate" attr.id='user_{{addedUser.new_id}}'>{{addedUser.name}}</span>
+    
+  </li>
+</ul>
