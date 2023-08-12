@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { UserDashboardComponent } from '../user-dashboard/user-dashboard.component';
-import { ISubscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import { UserDetails, RegisteredUserDetails } from '../ifsc';
 import { DataServiceService } from '../data-service.service';
 
@@ -24,7 +24,7 @@ export class LoginViewComponent implements OnInit, OnDestroy {
   rPwdMatched = '';
   rPwdDMatch = '';
   regUsers: RegisteredUserDetails[] = [];
-  private _subs: ISubscription;
+  private _subs: Subscription;
   constructor(private _router: Router, private _activatedRoute: ActivatedRoute, private _ds: DataServiceService) { }
 
   ngOnInit() {
@@ -43,7 +43,7 @@ export class LoginViewComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     // this._subs.unsubscribe();
   }
-  validateLogin(id, pass) {
+  validateLogin(id = '', pass = '') {
     if (!(document.getElementById('lgnFrmSbmtBtn').classList.contains('disabled'))) {
       this._router.navigate(['./dashboardView']);
     }

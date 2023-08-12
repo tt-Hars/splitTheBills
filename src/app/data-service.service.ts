@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
 import { UserDetails } from './ifsc';
 import { EventDetails } from './ifsc';
 import { RegisteredUserDetails } from './ifsc';
-import {Observable} from 'rxjs/observable';
+import {Observable} from 'rxjs';
 
 @Injectable()
 export class DataServiceService {

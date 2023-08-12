@@ -44,14 +44,14 @@
       </div>
       <div class="">
         <div class="input-field col s12">
-          <input type="password" class="validate" (blur) = 'matchPasswords(RPwd.value, RCpwd.vaule)' id="rPassword" [(ngModel)] = "rPassword" name="rPassword" #RPwd required>
+          <input type="password" class="validate" (blur) = 'matchPasswords()' id="rPassword" [(ngModel)] = "rPassword" name="rPassword" #RPwd required>
           <label for="rPassword">Password</label>
           <span class="helper-text" [attr.data-success]="rPwdGoodEnough" [attr.data-error]="userPwdWarningMsg"></span>
         </div>
       </div>
       <div class="">
         <div class="input-field col s12">
-          <input type="password" class="validate" (blur) = 'matchPasswords(RPwd.value, RCpwd.value)' id="cnfPassword" [(ngModel)] = "rCnfPassword" name="cnfPassword" #RCpwd required>
+          <input type="password" class="validate" (blur) = 'matchPasswords()' id="cnfPassword" [(ngModel)] = "rCnfPassword" name="cnfPassword" #RCpwd required>
           <label for="cnfPassword">Confirm password</label>
           <span class="helper-text"  [attr.data-success]="rPwdMatched" [attr.data-error]="rPwdDMatch"></span>
         </div>

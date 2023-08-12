@@ -1,6 +1,6 @@
 import { Component, OnInit, OnChanges, Output, EventEmitter, Input, Directive, ElementRef, Inject, Renderer2 } from '@angular/core';
 import { UserDetails, EventDetails } from '../ifsc';
-import { ISubscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 import { DataServiceService } from "../data-service.service";
 import { Router } from '@angular/router';
 
