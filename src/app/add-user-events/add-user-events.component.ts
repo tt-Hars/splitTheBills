@@ -1,7 +1,4 @@
-import {
-  Component, OnInit, OnChanges, Output,
-  EventEmitter, Input, Directive, ElementRef, Inject, Renderer2, Renderer
-} from '@angular/core';
+import { Component, OnInit, OnChanges, Output, EventEmitter, Input, Directive, ElementRef, Inject, Renderer2 } from '@angular/core';
 import { UserDetails, EventDetails } from '../ifsc';
 import { ISubscription } from 'rxjs/Subscription';
 import { DataServiceService } from "../data-service.service";
