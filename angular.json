@@ -105,7 +105,6 @@
       }
     }
   },
-  "defaultProject": "split-the-bills",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",
