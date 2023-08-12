@@ -1,6 +1,8 @@
 # SplitTheBills
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.3.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.3 then upgraded to version 16.2.0.
+
+`pnpm` is used the package manager.
 
 ## Development server
 

@@ -7,13 +7,13 @@ import { LoginViewComponent } from './login-view/login-view.component';
 import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
 
 const routes: Routes = [
-  {path: '*', redirectTo: 'menuView', pathMatch: 'full'},
   {path: '', redirectTo: 'menuView', pathMatch: 'full'  },
   {path: 'menuView', component: MenuViewComponent},
   {path: 'addUserEvents', component: AddUserEventsComponent},
   {path: 'resultView', component: ResultViewComponent},
   {path: 'dashboardView', component: UserDashboardComponent},
-  {path: 'lrView', component: LoginViewComponent}
+  {path: 'lrView', component: LoginViewComponent},
+  {path: '*', redirectTo: 'menuView', pathMatch: 'full'}
 ];
 
 @NgModule({
