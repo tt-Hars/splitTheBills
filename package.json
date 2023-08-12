@@ -25,12 +25,12 @@
     "@angular/router": "^7.2.16",
     "core-js": "^2.4.1",
     "rxjs": "^6.6.7",
-    "zone.js": "^0.8.14",
-    "rxjs-compat": "^6.0.0-rc.0"
+    "rxjs-compat": "^6.0.0-rc.0",
+    "zone.js": "^0.8.14"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.8.0",
-    "@angular/cli": "7.3.10",
+    "@angular/cli": "^8.3.29",
     "@angular/compiler-cli": "^7.2.16",
     "@angular/language-service": "^7.2.16",
     "@types/jasmine": "~2.5.53",
