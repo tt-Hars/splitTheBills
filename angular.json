@@ -23,7 +23,7 @@
             ],
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/pink-bluegrey.css",
-              "src/styles.scss"
+              "src/styles.css"
             ],
             "scripts": [],
             "aot": false,
@@ -80,7 +80,7 @@
             "tsConfig": "src/tsconfig.spec.json",
             "scripts": [],
             "styles": [
-              "src/styles.scss"
+              "src/styles.css"
             ],
             "assets": [
               "src/assets",
@@ -108,8 +108,7 @@
   },
   "schematics": {
     "@schematics/angular:component": {
-      "prefix": "app",
-      "style": "scss"
+      "prefix": "app"
     },
     "@schematics/angular:directive": {
       "prefix": "app"
