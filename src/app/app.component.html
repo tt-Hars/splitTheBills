@@ -1,26 +1,29 @@
 <!--The content below is only a placeholder and can be replaced.-->
-<header>
-  <div class="row">
-    <div class="col s6 m2">
-    <span class="icon"><a routerLink="../menuView" routerLinkActive="active"><span>STB</span></a></span>
-    </div>
-    <div class="col hide-on-small-only m8">
-      <div class="headHeading">
-        <h1 class="header">
-          {{title}}
-        </h1>
-      </div>
-    </div>
-    <div class="col s6 m2">
-      <div class="userDetails"><span>Hey {{currentUser}}!</span><div class="userImg"><img src= "{{imgPath}}" alt=""></div></div>
-      </div>
-    </div>
-</header>
-  <main>
-    <app-user-name-tb-shared (getUsersName) = getUserName($event) [ngClass]="{'hideItem': isEleHidden}"></app-user-name-tb-shared>
-    <router-outlet></router-outlet>
-</main>
-
-<footer>
-  <p>STB copyright :p 2018</p>
-</footer>
+<div>
+  <mat-toolbar>
+    <button
+      mat-icon-button
+      class="example-icon"
+      aria-label="Example icon-button with menu icon"
+    >
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>My App</span>
+    <span class="example-spacer"></span>
+    <button
+      mat-icon-button
+      class="example-icon favorite-icon"
+      aria-label="Example icon-button with heart icon"
+    >
+      <mat-icon fontIcon="favorite">favorite</mat-icon>
+    </button>
+    <button
+      mat-icon-button
+      class="example-icon"
+      aria-label="Example icon-button with share icon"
+    >
+      <mat-icon>share</mat-icon>
+    </button>
+  </mat-toolbar>
+</div>
+<router-outlet></router-outlet>

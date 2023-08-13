@@ -1,55 +1,31 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
 
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule } from "./app-routing.module";
 
-import { AppComponent } from './app.component';
-import { MenuViewComponent } from './menu-view/menu-view.component';
-import { AddUserEventsComponent } from './add-user-events/add-user-events.component';
-import { ResultViewComponent } from './result-view/result-view.component';
-import { LoginViewComponent } from './login-view/login-view.component';
-import { AddUserEventsModule } from './add-user-events/add-user-events.module';
-import { FormsModule } from '@angular/forms';
-import { UserNameTbSharedComponent } from './shared/user-name-tb-shared.component';
-import { UserDashboardComponent } from './user-dashboard/user-dashboard.component';
-import { DataServiceService } from './data-service.service';
-import { HttpClientModule } from '@angular/common/http'
-/*
-import { MatFormFieldModule } from '@angular/material';
-import { MatInputModule } from '@angular/material';
-import { MatOptionModule } from '@angular/material';
-import { MatSelectModule } from '@angular/material';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule} from '@angular/material';
-import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-*/
+import { AppComponent } from "./app.component";
+import { FormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
+import { PreLoginModule } from "./pre-login/pre-login.module";
+
+import { MatIconModule } from "@angular/material/icon";
+import { MatButtonModule } from "@angular/material/button";
+import { MatToolbarModule } from "@angular/material/toolbar";
+
 @NgModule({
-  declarations: [
-    AppComponent,
-    MenuViewComponent,
-    AddUserEventsComponent,
-    ResultViewComponent,
-    LoginViewComponent,
-    UserNameTbSharedComponent,
-    UserDashboardComponent
-  ],
+  declarations: [AppComponent],
+
   imports: [
     BrowserModule,
     FormsModule,
     AppRoutingModule,
-    AddUserEventsModule,
-    HttpClientModule
-/*
-    MatFormFieldModule,
-    MatInputModule,
-    MatOptionModule,
-    MatSelectModule,
+    HttpClientModule,
+    MatIconModule,
     MatButtonModule,
-    BrowserAnimationsModule,
-    MatProgressSpinnerModule
-*/
+    MatToolbarModule,
+    PreLoginModule,
   ],
-  providers: [DataServiceService],
-  bootstrap: [AppComponent]
+  providers: [],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
