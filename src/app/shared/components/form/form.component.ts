@@ -1,13 +1,13 @@
 import { Component, Input, OnInit } from "@angular/core";
 import { SharedModule } from "../../shared.module";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations"
+
 import { FormArray, FormBuilder, FormGroup } from "@angular/forms";
 import { MemberFormModel } from "../../models/member.form.model";
 
 @Component({
   selector: "app-form",
   standalone: true,
-  imports: [BrowserAnimationsModule, SharedModule],
+  imports: [SharedModule],
   templateUrl: './form.component.html',
   styles: [],
 })
