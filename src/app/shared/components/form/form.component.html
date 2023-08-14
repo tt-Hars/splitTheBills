@@ -1,6 +1,6 @@
-<form [formGroup]="memberForm" (ngSubmit)="onSubmit()">
+<form #formElement [formGroup]="memberForm" (ngSubmit)="onSubmit()">
   <p>
-    <mat-form-field appearance="outline">
+    <mat-form-field class="w-[33.3rem]" appearance="outline">
       <mat-label>Event</mat-label>
       <input
         name="eventName"
@@ -38,8 +38,8 @@
       <mat-form-field class="-ml-px" appearance="outline" floatLabel="always">
         <mat-label>Contribution</mat-label>
         <input
-          name="contribution"
-          formControlName="contribution"
+          name="amount"
+          formControlName="amount"
           matInput
           type="number"
           class="text-end"
