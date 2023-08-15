@@ -14,7 +14,7 @@ export class HelloComponent implements OnInit {
 
   ngOnInit(): void {
     this.csInstance = new CalculateShare();
-    this.isChecked = false;
+    this.isChecked = true;
   }
 
   @ViewChild("formRef") formComponent: FormComponent;

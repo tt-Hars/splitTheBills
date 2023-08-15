@@ -4,8 +4,8 @@
       *ngFor="let event of events().controls; let j = index"
       [formGroupName]="j"
     >
-      <p>
-        <mat-form-field class="w-[33.3rem]" appearance="outline">
+      <p class="flex">
+        <mat-form-field class="w-64 lg:w-[33.3rem]" appearance="outline">
           <mat-label>Event</mat-label>
           <input
             class="!capitalize"
@@ -16,64 +16,64 @@
           />
         </mat-form-field>
         <button
-            mat-icon-button
-            class="example-icon"
-            (click)="removeEvent($event, j)"
-            aria-label="Example icon-button with menu icon"
-          >
-            <mat-icon>delete_forever</mat-icon>
-          </button>
+          mat-icon-button
+          class="example-icon"
+          (click)="removeEvent($event, j)"
+          aria-label="Example icon-button with menu icon"
+        >
+          <mat-icon>delete_forever</mat-icon>
+        </button>
       </p>
       <div class="flex flex-col w-auto" formArrayName="members">
         <div
           *ngFor="let member of event.get('members').controls; let i = index"
           [formGroupName]="i"
-          class="flex justify-between"
+          class="flex justify-between lg:flex-row flex-col"
         >
           <mat-form-field appearance="outline">
             <mat-label>Member</mat-label>
             <input
-            class="!capitalize"
+              class="!capitalize"
               name="memberName"
               placeholder="Add member's name"
               formControlName="memberName"
               matInput
             />
           </mat-form-field>
-          <mat-form-field class="ml-4 w-16" appearance="outline">
-            <mat-select name="currency" formControlName="currency">
-              <mat-option
-                *ngFor="let c of currencies"
-                [value]="c.code"
-                >{{ c.symbol }}</mat-option
-              >
-            </mat-select>
-          </mat-form-field>
-          <mat-form-field
-            class="-ml-px"
-            appearance="outline"
-            floatLabel="always"
-          >
-            <mat-label>Contribution</mat-label>
-            <input
-              name="amount"
-              formControlName="amount"
-              matInput
-              type="number"
-              class="text-end"
-              placeholder="0"
-            />
-            <span matTextPrefix>&nbsp;</span>
-            <span matTextSuffix>.00</span>
-          </mat-form-field>
-          <button
-            mat-icon-button
-            class="example-icon"
-            (click)="removeMember($event, i, j)"
-            aria-label="Example icon-button with menu icon"
-          >
-            <mat-icon>delete_forever</mat-icon>
-          </button>
+          <div class="flex">
+            <mat-form-field class="lg:ml-4 w-[5rem] lg:w-16" appearance="outline">
+              <mat-select name="currency" formControlName="currency">
+                <mat-option *ngFor="let c of currencies" [value]="c.code">{{
+                  c.symbol
+                }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field
+              class="-ml-px"
+              appearance="outline"
+              floatLabel="always"
+            >
+              <mat-label>Contribution</mat-label>
+              <input
+                name="amount"
+                formControlName="amount"
+                matInput
+                type="number"
+                class="text-end"
+                placeholder="0"
+              />
+              <span matTextPrefix>&nbsp;</span>
+              <span matTextSuffix>.00</span>
+            </mat-form-field>
+            <button
+              mat-icon-button
+              class="example-icon"
+              (click)="removeMember($event, i, j)"
+              aria-label="Example icon-button with menu icon"
+            >
+              <mat-icon>delete_forever</mat-icon>
+            </button>
+          </div>
         </div>
       </div>
       <button
