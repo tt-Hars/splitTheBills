@@ -3,8 +3,33 @@
   <ng-container card-content>
     <app-form #formRef></app-form>
   </ng-container>
-  <div class="m-4 flex justify-end w-full float-right" card-actions>
-    <button color="accent" mat-stroked-button (click)="formReset($event)">Reset</button>
-    <button class="ml-4" color="primary" mat-stroked-button (click)="formSubmit($event)">Calculate</button>
+  <div class="m-4 flex justify-between w-full float-right" card-actions>
+    <button class="!-m-1.5" color="accent" mat-stroked-button (click)="formReset($event)">
+      RESET
+    </button>
+    <div>
+      <mat-checkbox class="example-margin" [(ngModel)]="isChecked"
+        >Add another event?</mat-checkbox
+      >
+      <button
+        *ngIf="isChecked; else calculate"
+        class="ml-4"
+        color="primary"
+        mat-stroked-button
+        (click)="addEvent($event)"
+      >
+        ADD EVENT
+      </button>
+      <ng-template #calculate>
+        <button
+          class="ml-4"
+          color="primary"
+          mat-stroked-button
+          (click)="formSubmit($event)"
+        >
+          CALCULATE
+        </button>
+      </ng-template>
+    </div>
   </div>
 </app-card>

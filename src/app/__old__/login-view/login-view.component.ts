@@ -75,7 +75,7 @@ export class LoginViewComponent implements OnInit, OnDestroy {
     // this.rUserName = '';
     // this.rName = '';
     if (this.matchPasswords()) {
-     // debugger;
+     // 
       this.regUsers.push({id: c, name: this.rName, user_name: this.rUserID, user_password: this.rPassword});
       c++;
       this._ds.setRegUsersList(this.regUsers);

@@ -1,11 +1,18 @@
-import { AfterViewInit, Component, ElementRef, Input, OnDestroy, OnInit, ViewChild } from "@angular/core";
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  Input,
+  OnDestroy,
+  OnInit,
+  ViewChild,
+} from "@angular/core";
+import { FormArray, FormBuilder, FormGroup } from "@angular/forms";
+import { Observable, Subscription, fromEvent } from "rxjs";
+import { v4 as uuid } from "uuid";
 import { SharedModule } from "../../shared.module";
 
-import { FormArray, FormBuilder, FormGroup } from "@angular/forms";
-import { MemberFormModel } from "../../models/member.form.model";
-import { v4 as uuid } from "uuid";
 import getAName from "../../random-names";
-import { Observable, Subscription, fromEvent } from "rxjs";
 
 @Component({
   selector: "app-form",
@@ -15,20 +22,20 @@ import { Observable, Subscription, fromEvent } from "rxjs";
   styles: [],
 })
 export class FormComponent implements OnInit, AfterViewInit, OnDestroy {
-  @ViewChild('formElement') formElement: ElementRef
+  @ViewChild("formElement") formElement: ElementRef;
   memberForm: FormGroup;
-  constructor(private formBuilder: FormBuilder) {
-    this.memberForm = this.formBuilder.group({
-      eventId: uuid(),
-      eventName: `${getAName()}'s event`,
-      members: this.formBuilder.array([]),
-    });
-  }
-
+  eventCount = 0;
   memberCount = 0;
   currencies = [];
   click$: Observable<unknown>;
   clickSubscription: Subscription;
+
+  constructor(private formBuilder: FormBuilder) {
+    this.memberForm = this.formBuilder.group({
+      transactionId: uuid(),
+      events: this.formBuilder.array([]),
+    });
+  }
 
   ngOnInit(): void {
     this.currencies = [
@@ -53,49 +60,75 @@ export class FormComponent implements OnInit, AfterViewInit, OnDestroy {
         code: "JPY",
       },
     ];
-    // need at least 2 members to split the bill
-    this.addMember();
-    this.addMember();
+    // need at least an event and 2 members to split the bill
+    this.addEvent();
   }
 
   // should be moved to a directive
   ngAfterViewInit(): void {
-    this.click$ = fromEvent(this.formElement.nativeElement, 'click')
+    this.click$ = fromEvent(this.formElement.nativeElement, "click");
     this.clickSubscription = this.click$.subscribe((evt: MouseEvent) => {
-      const clickedItem = (evt.target as HTMLInputElement)
-      if(clickedItem.nodeName === 'INPUT'){
-        clickedItem.select()
-        console.log('I am clicked', evt.target)
+      const clickedItem = evt.target as HTMLInputElement;
+      if (clickedItem.nodeName === "INPUT") {
+        clickedItem.select();
+        console.log("I am clicked", evt.target);
       }
-    })
+    });
   }
 
   ngOnDestroy(): void {
-    this.clickSubscription.unsubscribe()
+    this.clickSubscription.unsubscribe();
   }
 
-  members(): FormArray {
-    return this.memberForm.get("members") as FormArray;
+  members(eventIndex = 0): FormArray {
+    return this.events().controls[eventIndex].get("members") as FormArray;
   }
 
-  newMember(): FormGroup {
+  events(): FormArray {
+    return this.memberForm.get("events") as FormArray;
+  }
+
+  newEvent(): FormGroup {
+    return this.formBuilder.group({
+      eventId: uuid(),
+      eventName: `${getAName()}'s event`,
+      members: this.formBuilder.array([]),
+    });
+  }
+
+  newMember(): FormGroup {    
     return this.formBuilder.group({
       memberId: uuid(),
       memberName: getAName(),
       amount: 0,
-      currency: "USD",
+      actualContribution: 0,
+      currency: "INR",
     });
   }
 
-  addMember(e?: Event) {
+  addMember(eventIndex = 0, e?: Event) {
     this.memberCount++;
     e?.preventDefault();
-    this.members().push(this.newMember());
+    this.members(eventIndex).push(this.newMember());
   }
 
-  removeMember(e: Event, index: number) {
+  addEvent(e?: Event) {
+    e?.preventDefault();
+    this.events().push(this.newEvent());
+    this.addMember(this.events().length - 1);
+    this.addMember(this.events().length - 1);
+    this.addMember(this.events().length - 1);
+    this.eventCount++;
+  }
+
+  removeMember(e: Event, index: number, eventIndex: number) {
     e.preventDefault();
-    this.members().removeAt(index);
+    this.members(eventIndex).removeAt(index);
+  }
+
+  removeEvent(e: Event, index: number) {
+    e.preventDefault();
+    this.events().removeAt(index);
   }
 
   onSubmit() {
@@ -103,7 +136,6 @@ export class FormComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   onReset() {
-    debugger;
     this.memberForm.reset();
   }
 }

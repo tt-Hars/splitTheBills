@@ -1,70 +1,90 @@
 <form #formElement [formGroup]="memberForm" (ngSubmit)="onSubmit()">
-  <p>
-    <mat-form-field class="w-[33.3rem]" appearance="outline">
-      <mat-label>Event</mat-label>
-      <input
-        name="eventName"
-        placeholder="Add event's name"
-        formControlName="eventName"
-        matInput
-      />
-    </mat-form-field>
-  </p>
-  <div class="flex flex-col w-auto" formArrayName="members">
+  <div formArrayName="events">
     <div
-      *ngFor="let member of members().controls; let i = index"
-      [formGroupName]="i"
-      class="flex justify-between"
+      *ngFor="let event of events().controls; let j = index"
+      [formGroupName]="j"
     >
-      <mat-form-field appearance="outline">
-        <mat-label>Member</mat-label>
-        <input
-          name="memberName"
-          placeholder="Add member's name"
-          formControlName="memberName"
-          matInput
-        />
-      </mat-form-field>
-      <mat-form-field class="ml-4 w-16" appearance="outline">
-        <mat-select name="currency" formControlName="currency">
-          <mat-option
-            *ngFor="let c of currencies"
-            [value]="c.code"
-            selected
-            >{{ c.symbol }}</mat-option
+      <p>
+        <mat-form-field class="w-[33.3rem]" appearance="outline">
+          <mat-label>Event</mat-label>
+          <input
+            class="!capitalize"
+            name="eventName"
+            placeholder="Add event's name"
+            formControlName="eventName"
+            matInput
+          />
+        </mat-form-field>
+        <button
+            mat-icon-button
+            class="example-icon"
+            (click)="removeEvent($event, j)"
+            aria-label="Example icon-button with menu icon"
           >
-        </mat-select>
-      </mat-form-field>
-      <mat-form-field class="-ml-px" appearance="outline" floatLabel="always">
-        <mat-label>Contribution</mat-label>
-        <input
-          name="amount"
-          formControlName="amount"
-          matInput
-          type="number"
-          class="text-end"
-          placeholder="0"
-        />
-        <span matTextPrefix>&nbsp;</span>
-        <span matTextSuffix>.00</span>
-      </mat-form-field>
+            <mat-icon>delete_forever</mat-icon>
+          </button>
+      </p>
+      <div class="flex flex-col w-auto" formArrayName="members">
+        <div
+          *ngFor="let member of event.get('members').controls; let i = index"
+          [formGroupName]="i"
+          class="flex justify-between"
+        >
+          <mat-form-field appearance="outline">
+            <mat-label>Member</mat-label>
+            <input
+            class="!capitalize"
+              name="memberName"
+              placeholder="Add member's name"
+              formControlName="memberName"
+              matInput
+            />
+          </mat-form-field>
+          <mat-form-field class="ml-4 w-16" appearance="outline">
+            <mat-select name="currency" formControlName="currency">
+              <mat-option
+                *ngFor="let c of currencies"
+                [value]="c.code"
+                >{{ c.symbol }}</mat-option
+              >
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field
+            class="-ml-px"
+            appearance="outline"
+            floatLabel="always"
+          >
+            <mat-label>Contribution</mat-label>
+            <input
+              name="amount"
+              formControlName="amount"
+              matInput
+              type="number"
+              class="text-end"
+              placeholder="0"
+            />
+            <span matTextPrefix>&nbsp;</span>
+            <span matTextSuffix>.00</span>
+          </mat-form-field>
+          <button
+            mat-icon-button
+            class="example-icon"
+            (click)="removeMember($event, i, j)"
+            aria-label="Example icon-button with menu icon"
+          >
+            <mat-icon>delete_forever</mat-icon>
+          </button>
+        </div>
+      </div>
       <button
-        mat-icon-button
-        class="example-icon"
-        (click)="removeMember($event, i)"
+        mat-stroked-button
+        (click)="addMember(j, $event)"
+        class="example-icon mb-8"
+        color="warning"
         aria-label="Example icon-button with menu icon"
       >
-        <mat-icon>delete_forever</mat-icon>
+        ADD MEMBER
       </button>
     </div>
   </div>
-  <button
-    mat-stroked-button
-    (click)="addMember($event)"
-    class="example-icon"
-    color="warning"
-    aria-label="Example icon-button with menu icon"
-  >
-    ADD MEMBER
-  </button>
 </form>
