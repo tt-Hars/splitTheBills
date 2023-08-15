@@ -122,12 +122,12 @@ export class FormComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   removeMember(e: Event, index: number, eventIndex: number) {
-    e.preventDefault();
+    e?.preventDefault();
     this.members(eventIndex).removeAt(index);
   }
 
   removeEvent(e: Event, index: number) {
-    e.preventDefault();
+    e?.preventDefault();
     this.events().removeAt(index);
   }
 
@@ -137,5 +137,11 @@ export class FormComponent implements OnInit, AfterViewInit, OnDestroy {
 
   onReset() {
     this.memberForm.reset();
+    // remove all the items from list
+    
+    // for(let i = this.events.length; this.events.length > 1 ; i++) {
+    //   this.removeEvent(null, 0)
+    //   this.removeMember(null, i, 0)
+    // }
   }
 }
