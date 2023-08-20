@@ -1,35 +1,46 @@
-<app-card class="flex justify-center" [className]="'max-w-[95vw] p-4 m-4'">
-  <h1 class="font-semibold mb-4" card-header>Split the bills!</h1>
-  <ng-container card-content>
-    <app-form #formRef></app-form>
-  </ng-container>
-  <div class="!mt-0 !lg:mt-4 m-4 flex justify-between lg:flex-row flex-col-reverse w-full float-right" card-actions>
-    <button class="!-ml-1.5" color="accent" mat-stroked-button (click)="formReset($event)">
-      RESET
-    </button>
-    <div class="flex lg:flex-row flex-col mb-4 lg:mb:0 !-ml-1.5 !lg:ml-0">
-      <mat-checkbox class="example-margin lg:mr-4" [(ngModel)]="isChecked"
-        >Add another event?</mat-checkbox
-      >
-      <button
-        *ngIf="isChecked; else calculate"
-        class=""
-        color="primary"
-        mat-stroked-button
-        (click)="addEvent($event)"
-      >
-        ADD EVENT
+<div class="flex justify-around flex-col-reverse md:flex-row">
+  <app-card [className]="'max-w-[95vw] p-4 m-4 flex justify-center'">
+    <h1 class="font-semibold mb-4" card-header>Split the bills!</h1>
+    <ng-container card-content>
+      <app-form #formRef></app-form>
+    </ng-container>
+    <div class="!mt-0 !lg:mt-4 m-4 flex justify-between lg:flex-row flex-col-reverse w-full float-right" card-actions>
+      <button class="!-ml-1.5" color="accent" mat-stroked-button (click)="formReset($event)">
+        RESET
       </button>
-      <ng-template #calculate>
+      <div class="flex lg:flex-row flex-col mb-4 lg:mb:0 !-ml-1.5 !lg:ml-0">
+        <mat-checkbox class="example-margin lg:mr-4" [(ngModel)]="isChecked"
+          >Add another event?</mat-checkbox
+        >
         <button
+          *ngIf="isChecked; else calculate"
           class=""
           color="primary"
           mat-stroked-button
-          (click)="formSubmit($event)"
+          (click)="addEvent($event)"
         >
-          CALCULATE
+          ADD EVENT
         </button>
-      </ng-template>
+        <ng-template #calculate>
+          <button
+            class=""
+            color="primary"
+            mat-stroked-button
+            (click)="formSubmit($event)"
+          >
+            CALCULATE
+          </button>
+        </ng-template>
+      </div>
     </div>
-  </div>
-</app-card>
+  </app-card>
+  
+  <ng-container *ngIf="isResultAvailable">
+    <app-card [className]="'max-w-[95vw] p-4 m-4 flex justify-center'">
+      <h1 class="font-semibold mb-4" card-header>Contribution results:</h1>
+      <ng-container card-content>
+        <app-result [transactionDetail]="hello" #resultRef></app-result>
+      </ng-container>
+    </app-card>
+  </ng-container>
+</div>
