@@ -1,1 +1,19 @@
-<p>result works!</p>
+<div class="border" *ngFor="let events of result | keyvalue">
+  <!-- {{events.value}} -->
+  {{events.value.eventName}}
+  <div class="border" *ngFor="let event of events.value.eventResult | keyvalue">
+    <ng-container *ngIf="event.value.isOwed">
+      Member's Name: {{ event.value.name }} <br />
+      Original amount paid: {{ event.value.amount }} <br />
+      Amount owed: {{ event.value.originalAmtOwed }} <br />
+      Members owing:
+      <br />
+      <div class="border" *ngFor="let member of event.value.owingMembers | keyvalue">
+        <!-- {{member.value}} -->
+        {{ member.value.member }}: {{ -member.value.owedAmount }}
+        <br />
+        <!-- // {{item2.key}} | {{item2.member}}  -->
+      </div>
+    </ng-container>
+  </div>
+</div>
